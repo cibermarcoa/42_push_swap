@@ -1,14 +1,6 @@
 #include "push_swap.h"
 
-
-
-
-
-
-
-
-
-void ft_push_swap(t_stack *stack_a, t_stack *stack_b)
+void	ft_push_swap(t_stack *stack_a, t_stack *stack_b)
 {
 	if (ft_is_sorted(stack_a))
 		return ;
@@ -16,12 +8,10 @@ void ft_push_swap(t_stack *stack_a, t_stack *stack_b)
 		sa(stack_a);
 	else if (stack_a->top == 2)
 		ft_sort_three_elements(stack_a);
-	/*
-	else if (size <= 5) {
+	else if (stack_a->top <= 4)
 		ft_sort_five_elements(stack_a, stack_b);
-	} else {
-		ft_quick_sort(stack_a, stack_b, size);
-	}*/
+	else
+		ft_quick_sort(stack_a, stack_b, stack_a->top + 1);
 }
 
 int	main(int argc, char **argv)
