@@ -38,11 +38,11 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	printf("\n");
-/*	i = 0;
+	i = 0;
 	while (i <= stack_b.top)
 	{
 		printf("%d ", stack_b.data[i]);
 		i++;
-	}*/
+	}
 	return (0);
 }

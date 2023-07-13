@@ -17,18 +17,19 @@ void	ft_sort_five_elements(t_stack *stack_a, t_stack *stack_b)
 	int		min;
 	int		max;
 
-	while (stack_a->top >= 2)
+	while (stack_a->top > 2)
 	{
 		min = ft_find_min(stack_a);
 		max = ft_find_max(stack_a);
-		if (stack_a->data[stack_a->top] == max
-			|| stack_a->data[stack_a->top] == min)
-			ra(stack_a);
-		else if (stack_a->data[stack_a->top - 1] == max
-			|| stack_a->data[stack_a->top - 1] == min)
+
+		if (stack_a->data[0] == min)
 			rra(stack_a);
-		else
+		else if (stack_a->data[stack_a->top - 1] == min)
+			sa(stack_a);
+		else if (stack_a->data[stack_a->top] == min)
 			pb(stack_a, stack_b);
+		else
+			ra(stack_a);
 	}
 	ft_sort_three_elements(stack_a);
 	while (!ft_is_empty(stack_b))
