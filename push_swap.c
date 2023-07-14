@@ -11,7 +11,7 @@ void	ft_push_swap(t_stack *stack_a, t_stack *stack_b)
 	else if (stack_a->top <= 4)
 		ft_sort_five_elements(stack_a, stack_b);
 	else
-		ft_mergesort(stack_a, stack_b);
+		*stack_a = ft_mergesort(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (i <= stack_b.top)
 	{
-		printf("%d ", stack_b.data[i]);
+		//printf("%d ", stack_b.data[i]);
 		i++;
 	}
 	return (0);

@@ -105,11 +105,12 @@ void ft_quick_sort(t_stack* stack_a, t_stack* stack_b, int size) {
 	}
 }*/
 
-void		ft_merge(t_stack *stack_a, t_stack *stack_b)
+t_stack	ft_merge(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack		aux_stack;
 
-	while (stack_a->top != -1 && stack_b != -1)
+	ft_init_stack(&aux_stack);
+	/*while (stack_a->top != -1 && stack_b->top != -1)
 	{
 		if (stack_a->top <= stack_b->top)
 			pa(stack_a, stack_b);
@@ -117,24 +118,11 @@ void		ft_merge(t_stack *stack_a, t_stack *stack_b)
 			pb(stack_a, stack_b);
 	}
 	while (stack_a->top != -1)
-		pa(stack_a, stack_b);
-	while (stack_b->top != -1)
 		pb(stack_a, stack_b);
-	
+	while (stack_b->top != -1)
+		pa(&aux_stack, stack_b);*/
+	return (aux_stack);
 
-    mientras no está_vacío(stack_a) y no está_vacío(stack_b) hacer
-        si tope(stack_a) <= tope(stack_b) entonces
-            pa  // push a
-        sino
-            pb  // push b
-
-    mientras no está_vacío(stack_a) hacer
-        pa  // push a
-
-    mientras no está_vacío(stack_b) hacer
-        pb  // push b
-
-    retornar nuevo_stack
 }
 
 t_stack		ft_sub(t_stack *stack, int first, int last)
@@ -142,27 +130,56 @@ t_stack		ft_sub(t_stack *stack, int first, int last)
 	int			i;
 	t_stack		aux_stack;
 
+	ft_init_stack(&aux_stack);
 	i = 0;
-	while (first < last)
+	while (first <= last)
 	{
 		aux_stack.data[i] = stack->data[first];
 		i++;
 		first++;
 	}
-	aux_stack.top = i;
+	aux_stack.top = i - 1;
 	return (aux_stack);
 }
 
-void ft_mergesort(t_stack *stack_a, t_stack *stack_b)
+t_stack	ft_mergesort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack		aux_stack_a;
 	t_stack		aux_stack_b;
 
-	aux_stack_a = ft_sub(&stack_a, 0, stack_a->top / 2);
-	aux_stack_b = ft_sub(&stack_a, stack_a->top / 2, stack_a->top);
+	ft_init_stack(&aux_stack_a);
+	ft_init_stack(&aux_stack_b);
+	aux_stack_a = ft_sub(stack_a, 0, stack_a->top / 2);
+printf("   %d\n", stack_a->top / 2);
+
+	int i = 0;
+	printf("\n");
+	while (i <= aux_stack_a.top)
+	{
+		printf("%d ", aux_stack_a.data[i]);
+		i++;
+	}
+
+printf("   %d\n", aux_stack_a.top);
+
+
+	aux_stack_b = ft_sub(stack_a, (aux_stack_a.top + 1), stack_a->top);
+
+	i = 0;
+	printf("\n");
+	while (i <= aux_stack_b.top)
+	{
+		printf("%d ", aux_stack_b.data[i]);
+		i++;
+	}
+
+printf("   %d\n", aux_stack_b.top);
+
+/*
+
 	ft_mergesort(&aux_stack_a, stack_b);
-	ft_mergesort(&aux_stack_b, stack_b);
-	ft_merge(&aux_stack_a, &aux_stack_b);
+	ft_mergesort(&aux_stack_b, stack_b);*/
+	return (ft_merge(&aux_stack_a, &aux_stack_b));
 
 }
 
