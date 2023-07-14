@@ -3,7 +3,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define MAX_STACK_SIZE 1000
+# define MAX_STACK_SIZE 5000
 
 typedef struct s_stack
 {
@@ -35,7 +35,7 @@ void rrr(t_stack *stack_a, t_stack *stack_b);
 void ft_sort_two_elements(t_stack *stack_a);
 void ft_sort_three_elements(t_stack *stack_a);
 void ft_sort_five_elements(t_stack *stack_a, t_stack *stack_b);
-void ft_quick_sort(t_stack *stack_a, t_stack *stack_b, int size);
+void ft_mergesort(t_stack *stack_a, t_stack *stack_b);
 
 void ft_init_stack(t_stack * stack);
 int ft_is_empty(t_stack * stack);
