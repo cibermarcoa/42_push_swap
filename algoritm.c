@@ -105,11 +105,25 @@ void ft_quick_sort(t_stack* stack_a, t_stack* stack_b, int size) {
 	}
 }*/
 
-t_stack	ft_merge(t_stack *stack_a, t_stack *stack_b)
+void	ft_mergesort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack		aux_stack;
 
 	ft_init_stack(&aux_stack);
+	while (!ft_is_empty(stack_a))
+	{
+		if (stack_a->data[stack_a->top] == ft_find_min(stack_a))
+			pb(stack_a, stack_b);
+		if (stack_a->data[stack_a->top] < stack_a->data[stack_a->top - 1])
+			sa(stack_a);
+		else
+			ra(stack_a);
+	}
+	while (!ft_is_empty(stack_b))
+	{
+		pa(stack_a, stack_b);
+	}
+	
 	/*while (stack_a->top != -1 && stack_b->top != -1)
 	{
 		if (stack_a->top <= stack_b->top)
@@ -121,10 +135,9 @@ t_stack	ft_merge(t_stack *stack_a, t_stack *stack_b)
 		pb(stack_a, stack_b);
 	while (stack_b->top != -1)
 		pa(&aux_stack, stack_b);*/
-	return (aux_stack);
 
 }
-
+/*
 t_stack		ft_sub(t_stack *stack, int first, int last)
 {
 	int			i;
@@ -142,7 +155,7 @@ t_stack		ft_sub(t_stack *stack, int first, int last)
 	return (aux_stack);
 }
 
-t_stack	ft_mergesort(t_stack *stack_a, t_stack *stack_b)
+void	ft_mergesort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack		aux_stack_a;
 	t_stack		aux_stack_b;
@@ -150,39 +163,15 @@ t_stack	ft_mergesort(t_stack *stack_a, t_stack *stack_b)
 	ft_init_stack(&aux_stack_a);
 	ft_init_stack(&aux_stack_b);
 	aux_stack_a = ft_sub(stack_a, 0, stack_a->top / 2);
-printf("   %d\n", stack_a->top / 2);
-
-	int i = 0;
-	printf("\n");
-	while (i <= aux_stack_a.top)
-	{
-		printf("%d ", aux_stack_a.data[i]);
-		i++;
-	}
-
-printf("   %d\n", aux_stack_a.top);
-
-
 	aux_stack_b = ft_sub(stack_a, (aux_stack_a.top + 1), stack_a->top);
-
-	i = 0;
-	printf("\n");
-	while (i <= aux_stack_b.top)
-	{
-		printf("%d ", aux_stack_b.data[i]);
-		i++;
-	}
-
-printf("   %d\n", aux_stack_b.top);
-
-/*
-
-	ft_mergesort(&aux_stack_a, stack_b);
-	ft_mergesort(&aux_stack_b, stack_b);*/
-	return (ft_merge(&aux_stack_a, &aux_stack_b));
+	if (stack_a->top != 0)
+		ft_mergesort(&aux_stack_a, &aux_stack_a);
+	if (stack_b->top != 0)
+		ft_mergesort(&aux_stack_b, &aux_stack_b);
+	ft_merge(&aux_stack_a, &aux_stack_b);
 
 }
-
+*/
 /*
 función mergesort(stack_a)
     si tamaño(stack_a) <= 1 entonces
