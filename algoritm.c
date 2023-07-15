@@ -15,15 +15,13 @@ void	ft_sort_three_elements(t_stack *stack_a)
 void	ft_sort_five_elements(t_stack *stack_a, t_stack *stack_b)
 {
 	while (stack_a->top > 2)
-	{
-		if (stack_a->data[0] == ft_find_min(stack_a))
-			rra(stack_a);
-		else if (stack_a->data[stack_a->top - 1] == ft_find_min(stack_a))
-			sa(stack_a);
-		else if (stack_a->data[stack_a->top] == ft_find_min(stack_a))
+	{	
+		if (stack_a->data[stack_a->top] == ft_find_min(stack_a))
 			pb(stack_a, stack_b);
-		else
+		if (stack_a->data[stack_a->top - 1] == ft_find_min(stack_a) || stack_a->data[stack_a->top - 1] == ft_find_min(stack_a))
 			ra(stack_a);
+		else
+			rra(stack_a);
 	}
 	ft_sort_three_elements(stack_a);
 	while (!ft_is_empty(stack_b))

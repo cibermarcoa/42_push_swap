@@ -21,18 +21,18 @@ void	ft_rotate(t_stack *stack)
 void	ra(t_stack *stack_a)
 {
 	ft_rotate(stack_a);
-	printf("ra\n");
+	ft_putendl_fd("ra", STDOUT_FILENO);
 }
 
 void	rb(t_stack *stack_b)
 {
 	ft_rotate(stack_b);
-	printf("rb\n");
+	ft_putendl_fd("rb", STDOUT_FILENO);
 }
 
 void	rr(t_stack *stack_a, t_stack *stack_b)
 {
 	ft_rotate(stack_a);
 	ft_rotate(stack_b);
-	printf("rr\n");
+	ft_putendl_fd("rr", STDOUT_FILENO);
 }
