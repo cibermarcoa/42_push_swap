@@ -1,5 +1,20 @@
 #include "push_swap.h"
 
+int	ft_is_close_to_top(t_stack *stack, int data)
+{
+	int		i;
+
+	i = stack->top;
+	while (i > (stack->top / 2))
+	{
+		if (stack->data[i] == data)
+			return (1);
+		i--;
+	}
+	return (0);
+}
+
+
 void ft_init_stack(t_stack * stack)
 {
 	stack->top = -1;
