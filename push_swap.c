@@ -13,25 +13,10 @@ int	main(int argc, char **argv)
 	i = argc - 1;
 	while (i > 0)
 	{
-		ft_push(&stack_a, atoi(argv[i]));
+		ft_push(&stack_a, ft_atoi(argv[i]));
 		i--;
 	}
 	ft_push_swap(&stack_a, &stack_b);
-	/*
-	i = 0;
-	printf("\n");
-	while (i <= stack_a.top)
-	{
-		printf("%d ", stack_a.data[i]);
-		i++;
-	}
-	printf("\n");
-	i = 0;
-	while (i <= stack_b.top)
-	{
-		printf("%d ", stack_b.data[i]);
-		i++;
-	}*/
 	return (0);
 }
 

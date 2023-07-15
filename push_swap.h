@@ -2,6 +2,7 @@
 # define PUSH_SWAP_H
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 # define MAX_STACK_SIZE 5000
 
@@ -34,12 +35,15 @@ void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 
+int		ft_atoi(const char *str);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+size_t	ft_strlen(const char *s);
 
 void	ft_init_stack(t_stack *stack);
 int		ft_is_empty(t_stack *stack);
-
 int		ft_pop(t_stack *stack);
-int		ft_peek(t_stack *stack);
 
 int		ft_is_sorted(t_stack *stack);
 int		ft_find_min(t_stack *stack);
