@@ -17,6 +17,13 @@ int	main(int argc, char **argv)
 		i--;
 	}
 	ft_push_swap(&stack_a, &stack_b);
+	i = 0;
+	while (i < stack_a.top + 2)
+	{
+		//printf("%d ", stack_a.data[i]);
+		i++;
+	}
+	
 	return (0);
 }
 
