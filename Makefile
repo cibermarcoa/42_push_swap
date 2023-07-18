@@ -1,26 +1,43 @@
-NAME = push_swap
+# Compiler and flags
+CC := gcc
+CFLAGS := -Wall -Wextra -Werror
+SRC_DIR := src
+INC_DIR := inc
+LIB_DIR := lib
 
-SRCS = ft_isspace.c algoritm.c error.c ft_atoi.c ft_putchar_fd.c ft_putendl_fd.c ft_putstr_fd.c ft_strlen.c push.c push_swap.c rotate.c rotate_rev.c stack.c swap.c utils.c
+# Files and directories
+SRCS := $(wildcard $(SRC_DIR)/*.c)
+OBJS := $(SRCS:$(SRC_DIR)/%.c=$(SRC_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
+LIBS := $(wildcard $(LIB_DIR)/*.c)
 
-OBJS = $(SRCS:.c=.o)
+# Executable
+NAME := push_swap
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+# Makefile rules
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+-include $(DEPS)
+
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c | inc lib
+	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@ -I $(INC_DIR) -I $(LIB_DIR)
+
+lib:
+	@mkdir -p $(LIB_DIR)
+
+inc:
+	@mkdir -p $(INC_DIR)
 
 clean:
-	rm -f $(OBJS)
+	$(RM) -r $(OBJS) $(DEPS)
+	@rmdir $(LIB_DIR) $(INC_DIR) 2>/dev/null || true
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
