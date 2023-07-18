@@ -1,16 +1,6 @@
 #include "push_swap.h"
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	while (*s1 && *s2)
-	{
-		if (*s1 - *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
-	}
-	return (*s1 - *s2);
-}
+
 
 
 int	main(int argc, char **argv)
@@ -20,7 +10,7 @@ int	main(int argc, char **argv)
 	t_stack		stack_b;
 
 	if (argc < 2)
-		exit(EXIT_FAILURE);
+		ft_error();
 	valid_args(argc, argv);
 	ft_init_stack(&stack_a);
 	ft_init_stack(&stack_b);

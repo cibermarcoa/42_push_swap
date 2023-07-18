@@ -28,20 +28,60 @@ void	ft_sort_five_elements(t_stack *stack_a, t_stack *stack_b)
 		pa(stack_a, stack_b);
 }
 
+int contains(t_stack *stack, long n)
+{
+	int i;
+
+	i = 0;
+	while (i < stack->top)
+	{
+		if (stack->data[i] <= n)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void	ft_sort_all_elements(t_stack *stack_a, t_stack *stack_b)
 {
-	while (stack_a->top > 4)
+	long n;
+	int	i;
+
+	i = 0;
+	n = 0;
+	while (i < stack_a->top)
 	{
-		if (stack_a->data[stack_a->top] == ft_find_min(stack_a))
-			pb(stack_a, stack_b);
-		if (ft_is_close_to_top(stack_a, ft_find_min(stack_a)))
-			while (stack_a->data[stack_a->top] != ft_find_min(stack_a))
-				ra(stack_a);
-		else
-			while (stack_a->data[stack_a->top] != ft_find_min(stack_a))
-				rra(stack_a);
+		n += stack_a->data[i];
+		i++;
 	}
-	ft_sort_five_elements(stack_a, stack_b);
-	while (stack_b->top > -1)
-		pa(stack_a, stack_b);
+	n /= 3;
+	while (ft_is_empty(stack_a))
+	{
+		if (contains(stack_a, n))
+			pb(stack_a, stack_b);
+		else
+			ra(stack_a);
+	}
+	
+
 }
+
+
+// First version of the algo
+// void	ft_sort_all_elements(t_stack *stack_a, t_stack *stack_b)
+// {
+// 	while (stack_a->top > 4)
+// 	{
+// 		if (stack_a->data[stack_a->top] == ft_find_min(stack_a))
+// 			pb(stack_a, stack_b);
+// 		if (ft_is_close_to_top(stack_a, ft_find_min(stack_a)))
+// 			while (stack_a->data[stack_a->top] != ft_find_min(stack_a))
+// 				ra(stack_a);
+// 		else
+// 			while (stack_a->data[stack_a->top] != ft_find_min(stack_a))
+// 				rra(stack_a);
+// 	}
+// 	ft_sort_five_elements(stack_a, stack_b);
+// 	while (stack_b->top > -1)
+// 		pa(stack_a, stack_b);
+// }

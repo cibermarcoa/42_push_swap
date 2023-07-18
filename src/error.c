@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	error(void)
+void	ft_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
@@ -20,7 +20,7 @@ void	are_duplicated(int argc, char **argv)
 		while (j < argc)
 		{
 			if (!ft_strcmp(argv[i], argv[j]) && i != j)
-				exit(EXIT_FAILURE);
+				ft_error();
 			j++;
 		}
 		i++;
@@ -36,9 +36,9 @@ void	valid_args(int argc, char **argv)
 	while (i < argc)
 	{
 		if (!ft_isinteger(argv[i]) || !ft_strlen(argv[i]))
-			exit(EXIT_FAILURE);
+			ft_error();
 		i++;
 	}
 	if (argc < 3)
-		exit(EXIT_SUCCESS);
+		ft_error();
 }
