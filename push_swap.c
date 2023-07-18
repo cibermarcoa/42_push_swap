@@ -1,5 +1,43 @@
 #include "push_swap.h"
 
+int	ft_strcmp(char *s1, char *s2)
+{
+	while (*s1 && *s2)
+	{
+		if (*s1 - *s2)
+			return (*s1 - *s2);
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
+}
+
+void	are_duplicated(int argc, char **argv)
+{
+	int		i;
+	int		j;
+
+	if (argc < 2)
+		exit(EXIT_SUCCESS);
+	i = 1;
+	while (i < argc)
+	{
+		j = 1;
+		while (j < argc)
+		{
+			if (!ft_strcmp(argv[i], argv[j]) && i != j)
+				exit(EXIT_FAILURE);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	valid_args(int argc, char **argv)
+{
+	are_duplicated(argc, argv);
+}
+
 int	main(int argc, char **argv)
 {
 	int			i;
@@ -11,6 +49,7 @@ int	main(int argc, char **argv)
 	ft_init_stack(&stack_a);
 	ft_init_stack(&stack_b);
 	i = argc - 1;
+	valid_args(argc, argv);
 	while (i > 0)
 	{
 		ft_push(&stack_a, ft_atoi(argv[i]));
