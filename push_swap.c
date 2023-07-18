@@ -1,5 +1,35 @@
 #include "push_swap.h"
 
+int ft_isinteger(char *element)
+{
+    long n = 0;
+    int sign = 1;
+    int i = 0;
+
+    while (ft_isspace(element[i]))
+        i++;
+    if (element[i] == '-' || element[i] == '+') {
+        if (element[i] == '-')
+            sign = -1;
+        i++;
+    }
+
+    // Procesamos los dígitos y construimos el número
+    while (ft_isdigit(element[i]))
+	{
+        n = (n * 10) + (element[i] - '0');
+        if (n * sign > INT_MAX || n * sign < INT_MIN)
+            return 0;
+        i++;
+    }
+
+    // Verificamos que no haya más caracteres después del número (excepto espacios en blanco)
+    while (ft_isspace(element[i]))
+        i++;
+    return (element[i] == '\0');
+}
+
+
 int	ft_strcmp(char *s1, char *s2)
 {
 	while (*s1 && *s2)

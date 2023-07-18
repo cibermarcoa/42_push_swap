@@ -3,6 +3,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 # define MAX_STACK_SIZE 5000
 
@@ -49,5 +50,9 @@ int	ft_is_sorted(t_stack *stack);
 int	ft_find_min(t_stack *stack);
 int	ft_find_max(t_stack *stack);
 int	ft_is_close_to_top(t_stack *stack, int data);
+
+
+int	ft_isspace(char c);
+int ft_isdigit(char c);
 
 #endif
