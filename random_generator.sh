@@ -42,7 +42,7 @@ generate_unique_random_numbers() {
 }
 
 # Generar 500 números aleatorios entre -1000 y 1000 (puedes ajustar los rangos si es necesario)
-random_numbers=$(generate_unique_random_numbers -1000 1000 15)
+random_numbers=$(generate_unique_random_numbers -1000 1000 100)
 
 # Imprimir los números aleatorios generados
 echo "${random_numbers[@]}"
