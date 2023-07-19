@@ -41,6 +41,7 @@ int	average(t_stack *stack)
 		n += stack->data[i];
 		i++;
 	}
+	n /= (stack->top + 1);
 	return (n);
 }
 
@@ -49,9 +50,9 @@ int contains_below(t_stack *stack, int n)
 	int i;
 
 	i = 0;
-	while (i < stack->top)
+	while (i <= stack->top)
 	{
-		if (stack->data[i] < n)
+		if (stack->data[i] <= n)
 			return (1);
 		i++;
 	}
@@ -63,23 +64,27 @@ void	ft_sort_all_elements(t_stack *stack_a, t_stack *stack_b)
 	int		limit;
 
 	limit = average(stack_a);
-	// printf("Avrage is: %d\n", limit);
-	limit /= ((stack_a->top + 1) * 3);
-	// printf("Limit is: %d\n", limit);
-	while (stack_a->top > 2)
+	//printf("Avrage is: %d\n", limit);
+	limit /= 2;
+	//printf("Limit is: %d\n", limit);
+// !ft_is_empty(stack_a)
+	while (!ft_is_empty(stack_a))
 	{
-		while (contains_below(stack_a, limit))
+		if (contains_below(stack_a, limit))
 		{
+			//printf("entra");
 			if (stack_a->data[stack_a->top] <= limit)
 				pb(stack_a, stack_b);
 			else
 				ra(stack_a);
 		}
-			//limit = average(stack_a);
+		else
+		{
+			//limit = average(stack_a) / 2;
 			limit *= 2;
-			// printf("LIMIT NOW IS: %d\n", limit);
+			printf("LIMIT NOW IS: %d\n", limit);
+		}
 	}
-	ft_sort_three_elements(stack_a);
 	while (!ft_is_empty(stack_b))
 	{
 		if (stack_b->data[stack_b->top] == ft_find_max(stack_b))
@@ -92,7 +97,6 @@ void	ft_sort_all_elements(t_stack *stack_a, t_stack *stack_b)
 				rb(stack_b);
 			else
 				rrb(stack_b);
-			
 		}
 	}
 
