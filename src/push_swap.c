@@ -21,13 +21,21 @@ int	main(int argc, char **argv)
 		i--;
 	}
 	ft_push_swap(&stack_a, &stack_b);
-	i = 0;
-	while (i < stack_a.top + 2)
-	{
-		//printf("%d ", stack_a.data[i]);
-		i++;
-	}
-	
+	// i = 0;
+	// printf("Stack a:");
+	// while (i < stack_a.top + 1)
+	// {
+	// 	printf("%d ", stack_a.data[i]);
+	// 	i++;
+	// }
+	// printf("\n");
+	// i = 0;
+	// printf("Stack b:");
+	// while (i < stack_b.top + 1)
+	// {
+	// 	printf("%d ", stack_b.data[i]);
+	// 	i++;
+	// }
 	return (0);
 }
 
