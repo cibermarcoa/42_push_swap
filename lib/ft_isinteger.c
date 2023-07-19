@@ -1,6 +1,6 @@
-#include "push_swap.h"
+#include "libft.h"
 
-int ft_isinteger(char *str)
+int ft_isinteger(const char *str)
 {
 	int		i;
 	int		sign;

@@ -1,43 +1,52 @@
 # Compiler and flags
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror
-SRC_DIR := src
-INC_DIR := inc
+
+# Directories
 LIB_DIR := lib
+INC_DIR := $(LIB_DIR)
+LIB_OBJ_DIR := $(LIB_DIR)/obj
 
-# Files and directories
-SRCS := $(wildcard $(SRC_DIR)/*.c)
-OBJS := $(SRCS:$(SRC_DIR)/%.c=$(SRC_DIR)/%.o)
-DEPS := $(OBJS:.o=.d)
-LIBS := $(wildcard $(LIB_DIR)/*.c)
+# Files
+LIB_SRCS := $(wildcard $(LIB_DIR)/*.c)
+LIB_OBJS := $(LIB_SRCS:$(LIB_DIR)/%.c=$(LIB_OBJ_DIR)/%.o)
+LIB_NAME := $(LIB_DIR)/libft.a
 
-# Executable
-NAME := push_swap
+# push_swap files
+PUSH_SWAP_DIR := src
+PUSH_SWAP_OBJ_DIR := $(PUSH_SWAP_DIR)/obj
+PUSH_SWAP_SRCS := $(wildcard $(PUSH_SWAP_DIR)/*.c)
+PUSH_SWAP_OBJS := $(PUSH_SWAP_SRCS:$(PUSH_SWAP_DIR)/%.c=$(PUSH_SWAP_OBJ_DIR)/%.o)
+PUSH_SWAP_NAME := push_swap
 
 # Makefile rules
 .PHONY: all clean fclean re
 
-all: $(NAME)
+all: $(LIB_NAME) $(PUSH_SWAP_NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+$(LIB_NAME): $(LIB_OBJS)
+	ar rcs $@ $^
 
--include $(DEPS)
+$(PUSH_SWAP_NAME): $(PUSH_SWAP_OBJS) $(LIB_NAME)
+	$(CC) $(CFLAGS) -o $@ $^ -I $(INC_DIR)
 
-$(SRC_DIR)/%.o: $(SRC_DIR)/%.c | inc lib
-	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@ -I $(INC_DIR) -I $(LIB_DIR)
+$(LIB_OBJ_DIR)/%.o: $(LIB_DIR)/%.c | $(LIB_OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 
-lib:
-	@mkdir -p $(LIB_DIR)
+$(PUSH_SWAP_OBJ_DIR)/%.o: $(PUSH_SWAP_DIR)/%.c | $(PUSH_SWAP_OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 
-inc:
-	@mkdir -p $(INC_DIR)
+$(LIB_OBJ_DIR):
+	@mkdir -p $(LIB_OBJ_DIR)
+
+$(PUSH_SWAP_OBJ_DIR):
+	@mkdir -p $(PUSH_SWAP_OBJ_DIR)
 
 clean:
-	$(RM) -r $(OBJS) $(DEPS)
-	@rmdir $(LIB_DIR) $(INC_DIR) 2>/dev/null || true
+	$(RM) -r $(LIB_OBJ_DIR)
+	$(RM) -r $(PUSH_SWAP_OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(LIB_NAME) $(PUSH_SWAP_NAME)
 
 re: fclean all
