@@ -12,7 +12,7 @@ void	are_duplicated(int argc, char **argv)
 	int		j;
 
 	if (argc < 2)
-		return ;
+		ft_error();
 	i = 1;
 	while (i < argc)
 	{
@@ -39,6 +39,4 @@ void	valid_args(int argc, char **argv)
 			ft_error();
 		i++;
 	}
-	if (argc < 3)
-		ft_error();
 }
