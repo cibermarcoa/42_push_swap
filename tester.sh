@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Número de elementos para la lista aleatoria
-NUM_ELEMENTS=5
+NUM_ELEMENTS=100
 
 # Rango de valores para los elementos de la lista aleatoria
 MIN_VALUE=-100

@@ -18,7 +18,7 @@ void	ft_sort_five_elements(t_stack *stack_a, t_stack *stack_b)
 	{	
 		if (stack_a->data[stack_a->top] == ft_find_min(stack_a))
 			pb(stack_a, stack_b);
-		else if (stack_a->data[stack_a->top - 1] == ft_find_min(stack_a) || stack_a->data[stack_a->top - 1] == ft_find_min(stack_a))
+		else if (stack_a->data[stack_a->top - 1] == ft_find_min(stack_a) || stack_a->data[stack_a->top - 2] == ft_find_min(stack_a))
 			ra(stack_a);
 		else
 			rra(stack_a);
@@ -29,7 +29,7 @@ void	ft_sort_five_elements(t_stack *stack_a, t_stack *stack_b)
 }
 
 
-int	average(t_stack *stack)
+long	average(t_stack *stack)
 {
 	long n;
 	int	i;
@@ -45,7 +45,7 @@ int	average(t_stack *stack)
 	return (n);
 }
 
-int contains_below(t_stack *stack, int n)
+int contains_below(t_stack *stack, long n)
 {
 	int i;
 
@@ -61,28 +61,34 @@ int contains_below(t_stack *stack, int n)
 
 void	ft_sort_all_elements(t_stack *stack_a, t_stack *stack_b)
 {
-	int		limit;
+	long		limit;
 
 	limit = average(stack_a);
-	//printf("Avrage is: %d\n", limit);
-	limit /= 2;
-	//printf("Limit is: %d\n", limit);
+	// printf("Avrage is: %ld\n", limit);
+	// printf("Limit is: %ld\n", limit);
 // !ft_is_empty(stack_a)
 	while (!ft_is_empty(stack_a))
 	{
+		//printf("first while");
 		if (contains_below(stack_a, limit))
 		{
-			//printf("entra");
+			//printf("entra\n");
 			if (stack_a->data[stack_a->top] <= limit)
+			{
 				pb(stack_a, stack_b);
+				//printf("doing this1\n");
+			}
 			else
+			{
 				ra(stack_a);
+				//printf("doing this2\n");
+			}
 		}
 		else
 		{
-			//limit = average(stack_a) / 2;
-			limit *= 2;
-			//printf("LIMIT NOW IS: %d\n", limit);
+			limit = average(stack_a);
+			//limit ;
+			// printf("LIMIT NOW IS: %ld\n", limit);
 		}
 	}
 	while (!ft_is_empty(stack_b))
