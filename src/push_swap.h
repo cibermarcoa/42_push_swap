@@ -21,7 +21,7 @@ void	ft_sort_five_elements(t_stack *stack_a, t_stack *stack_b);
 void	ft_sort_all_elements(t_stack *stack_a, t_stack *stack_b);
 
 void	ft_push(t_stack *stack, int value);
-int	ft_swap(t_stack *stack);
+int		ft_swap(t_stack *stack);
 void	ft_rotate(t_stack *stack);
 void	ft_reverse_rotate(t_stack *stack);
 
@@ -38,13 +38,13 @@ void	rrb(t_stack *stack_b);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 void	ft_init_stack(t_stack *stack);
-int	ft_is_empty(t_stack *stack);
-int	ft_pop(t_stack *stack);
+int		ft_is_empty(t_stack *stack);
+int		ft_pop(t_stack *stack);
 
-int	ft_is_sorted(t_stack *stack);
-int	ft_find_min(t_stack *stack);
-int	ft_find_max(t_stack *stack);
-int	ft_is_close_to_top(t_stack *stack, int data);
+int		ft_is_sorted(t_stack *stack);
+int		ft_find_min(t_stack *stack);
+int		ft_find_max(t_stack *stack);
+int		ft_is_close_to_top(t_stack *stack, int data);
 
 void	ft_error(void);
 void	valid_args(int argc, char **argv);

@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int ft_isinteger(const char *str)
+int	ft_isinteger(const char *str)
 {
 	int		i;
 	int		sign;
