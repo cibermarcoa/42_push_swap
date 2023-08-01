@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	// 	printf("%d ", stack_a.data[i]);
 	// 	i++;
 	// }
+	// // printf("tisit:%d %d", i, stack_a.top);
 	// printf("\n");
 	// i = 0;
 	// printf("Stack b:");

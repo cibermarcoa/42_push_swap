@@ -1,27 +1,37 @@
 #!/bin/bash
 
-# Test 1
-ARG="1 5 2 4 3"
-output=$(./push_swap $ARG | ./checker $ARG)
-instructions=$(echo "$output" | wc -l)
-if [[ $output == "OK" && $instructions -le 12 ]]; then
-  echo "Test 1: Passed"
-  if [[ $instructions -le 8 ]]; then
-    echo "Kudos! Size of instructions <= 8"
-  fi
+# Número de elementos para la lista aleatoria
+NUM_ELEMENTS=5
+
+# Rango de valores para los elementos de la lista aleatoria
+MIN_VALUE=-100
+MAX_VALUE=100
+
+# Función para generar una lista aleatoria de números sin repetir
+generate_random_list() {
+    local generated_numbers=()
+    while [ ${#generated_numbers[@]} -lt $NUM_ELEMENTS ]; do
+        local new_num=$((RANDOM % ($MAX_VALUE - $MIN_VALUE + 1) + $MIN_VALUE))
+        if [[ ! " ${generated_numbers[@]} " =~ " $new_num " ]]; then
+            generated_numbers+=("$new_num")
+        fi
+    done
+
+    echo "${generated_numbers[@]}"
+}
+
+# Convertir la lista generada a un string separado por espacios
+ARG=$(generate_random_list | tr '\n' ' ')
+
+# Mostrar el argumento generado
+echo "Argumento generado: $ARG"
+
+# Ejecutar push_swap con el argumento generado y redirigir la salida a checker
+RESULT=$(./push_swap $ARG | ./checker $ARG)
+
+# Comprobar el resultado
+if [ "$RESULT" = "OK" ]; then
+    echo "¡La secuencia es correcta (OK)!"
 else
-  echo "Test 1: Failed"
+    echo "¡La secuencia NO es correcta!"
 fi
-
-# Test 2 (repeated multiple times)
-for i in {1..5}; do
-  ARG=$(shuf -i 1-100 -n 5 | tr '\n' ' ')
-  output=$(./push_swap $ARG | ./checker $ARG)
-  instructions=$(echo "$output" | wc -l)
-  if [[ $output == "OK" && $instructions -le 12 && ! $ARG =~ ([0-9]+).*\1 ]]; then
-    echo "Test 2 ($i): Passed"
-  else
-    echo "Test 2 ($i): Failed"
-  fi
-done
-

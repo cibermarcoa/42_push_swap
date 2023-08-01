@@ -18,7 +18,7 @@ void	ft_sort_five_elements(t_stack *stack_a, t_stack *stack_b)
 	{	
 		if (stack_a->data[stack_a->top] == ft_find_min(stack_a))
 			pb(stack_a, stack_b);
-		if (stack_a->data[stack_a->top - 1] == ft_find_min(stack_a) || stack_a->data[stack_a->top - 1] == ft_find_min(stack_a))
+		else if (stack_a->data[stack_a->top - 1] == ft_find_min(stack_a) || stack_a->data[stack_a->top - 1] == ft_find_min(stack_a))
 			ra(stack_a);
 		else
 			rra(stack_a);
@@ -82,7 +82,7 @@ void	ft_sort_all_elements(t_stack *stack_a, t_stack *stack_b)
 		{
 			//limit = average(stack_a) / 2;
 			limit *= 2;
-			printf("LIMIT NOW IS: %d\n", limit);
+			//printf("LIMIT NOW IS: %d\n", limit);
 		}
 	}
 	while (!ft_is_empty(stack_b))
