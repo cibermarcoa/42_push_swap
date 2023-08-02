@@ -6,7 +6,6 @@ void	ft_push(t_stack *stack, int value)
 		ft_error();
 	stack->top++;
 	stack->data[stack->top] = value;
-
 }
 
 void	pa(t_stack *stack_a, t_stack *stack_b)

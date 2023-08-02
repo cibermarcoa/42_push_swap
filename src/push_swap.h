@@ -45,6 +45,7 @@ int		ft_is_sorted(t_stack *stack);
 int		ft_find_min(t_stack *stack);
 int		ft_find_max(t_stack *stack);
 int		ft_is_close_to_top(t_stack *stack, int data);
+int		contains_below(t_stack *stack, long n);
 
 void	ft_error(void);
 void	valid_args(int argc, char **argv);

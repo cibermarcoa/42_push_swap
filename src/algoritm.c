@@ -15,10 +15,11 @@ void	ft_sort_three_elements(t_stack *stack_a)
 void	ft_sort_five_elements(t_stack *stack_a, t_stack *stack_b)
 {
 	while (stack_a->top > 2)
-	{	
+	{
 		if (stack_a->data[stack_a->top] == ft_find_min(stack_a))
 			pb(stack_a, stack_b);
-		else if (stack_a->data[stack_a->top - 1] == ft_find_min(stack_a) || stack_a->data[stack_a->top - 2] == ft_find_min(stack_a))
+		else if (stack_a->data[stack_a->top - 1] == ft_find_min(stack_a)
+			|| stack_a->data[stack_a->top - 2] == ft_find_min(stack_a))
 			ra(stack_a);
 		else
 			rra(stack_a);
@@ -28,11 +29,10 @@ void	ft_sort_five_elements(t_stack *stack_a, t_stack *stack_b)
 		pa(stack_a, stack_b);
 }
 
-
 long	average(t_stack *stack)
 {
-	long n;
-	int	i;
+	int		i;
+	long	n;
 
 	i = 0;
 	n = 0;
@@ -45,58 +45,12 @@ long	average(t_stack *stack)
 	return (n);
 }
 
-int contains_below(t_stack *stack, long n)
+void	ft_sort_all_elements_aux(t_stack *stack_a, t_stack *stack_b)
 {
-	int i;
-
-	i = 0;
-	while (i <= stack->top)
-	{
-		if (stack->data[i] <= n)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-void	ft_sort_all_elements(t_stack *stack_a, t_stack *stack_b)
-{
-	long		limit;
-
-	limit = average(stack_a);
-	// printf("Avrage is: %ld\n", limit);
-	// printf("Limit is: %ld\n", limit);
-// !ft_is_empty(stack_a)
-	while (!ft_is_empty(stack_a))
-	{
-		//printf("first while");
-		if (contains_below(stack_a, limit))
-		{
-			//printf("entra\n");
-			if (stack_a->data[stack_a->top] <= limit)
-			{
-				pb(stack_a, stack_b);
-				//printf("doing this1\n");
-			}
-			else
-			{
-				ra(stack_a);
-				//printf("doing this2\n");
-			}
-		}
-		else
-		{
-			limit = average(stack_a);
-			//limit ;
-			// printf("LIMIT NOW IS: %ld\n", limit);
-		}
-	}
 	while (!ft_is_empty(stack_b))
 	{
 		if (stack_b->data[stack_b->top] == ft_find_max(stack_b))
-		{
 			pa(stack_a, stack_b);
-		}
 		else
 		{
 			if (ft_is_close_to_top(stack_b, ft_find_max(stack_b)))
@@ -105,30 +59,24 @@ void	ft_sort_all_elements(t_stack *stack_a, t_stack *stack_b)
 				rrb(stack_b);
 		}
 	}
-
 }
 
+void	ft_sort_all_elements(t_stack *stack_a, t_stack *stack_b)
+{
+	long		limit;
 
-
-
-
-
-
-// First version of the algo 1519 in 100n (must be <1500), for 500 32522 (must be <11500)
-// void	ft_sort_all_elements(t_stack *stack_a, t_stack *stack_b)
-// {
-// 	while (stack_a->top > 2)
-// 	{
-// 		if (stack_a->data[stack_a->top] == ft_find_min(stack_a))
-// 			pb(stack_a, stack_b);
-// 		if (ft_is_close_to_top(stack_a, ft_find_min(stack_a)))
-// 			while (stack_a->data[stack_a->top] != ft_find_min(stack_a))
-// 				ra(stack_a);
-// 		else
-// 			while (stack_a->data[stack_a->top] != ft_find_min(stack_a))
-// 				rra(stack_a);
-// 	}
-// 	ft_sort_three_elements(stack_a);
-// 	while (stack_b->top > -1)
-// 		pa(stack_a, stack_b);
-// }
+	limit = average(stack_a);
+	while (!ft_is_empty(stack_a))
+	{
+		if (contains_below(stack_a, limit))
+		{
+			if (stack_a->data[stack_a->top] <= limit)
+				pb(stack_a, stack_b);
+			else
+				ra(stack_a);
+		}
+		else
+			limit = average(stack_a);
+	}
+	ft_sort_all_elements_aux(stack_a, stack_b);
+}

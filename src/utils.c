@@ -37,7 +37,6 @@ int	ft_find_min(t_stack *stack)
 
 	i = stack->top - 1;
 	min = stack->data[stack->top];
-
 	while (i >= 0)
 	{
 		if (stack->data[i] < min)
@@ -57,6 +56,20 @@ int	ft_is_close_to_top(t_stack *stack, int data)
 		if (stack->data[i] == data)
 			return (1);
 		i--;
+	}
+	return (0);
+}
+
+int	contains_below(t_stack *stack, long n)
+{
+	int		i;
+
+	i = 0;
+	while (i <= stack->top)
+	{
+		if (stack->data[i] <= n)
+			return (1);
+		i++;
 	}
 	return (0);
 }
