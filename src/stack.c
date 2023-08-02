@@ -13,9 +13,6 @@ int	ft_is_empty(t_stack *stack)
 int	ft_pop(t_stack *stack)
 {
 	if (ft_is_empty(stack))
-	{
-		fprintf(stderr, "Error: Stack underflow\n");
-		exit(1);
-	}
+		ft_error();
 	return (stack->data[stack->top--]);
 }
